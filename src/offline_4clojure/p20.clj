@@ -6,7 +6,8 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
+  (fn [seq]
+    (second (reverse seq)))
 )
 
 (defn -main []

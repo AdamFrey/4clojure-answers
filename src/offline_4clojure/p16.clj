@@ -6,7 +6,7 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
+  (fn [name] (str "Hello, " name "!"))
 )
 
 (defn -main []

@@ -3,10 +3,11 @@
 ;; tags - 
 ;; restricted - 
 (ns offline-4clojure.p8
-  (:use clojure.test))
+  (:use clojure.test)
+  (:require clojure.set))
 
 (def __
-;; your solution here
+  #{:a :b :c :d}
 )
 
 (defn -main []
