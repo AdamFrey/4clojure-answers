@@ -6,7 +6,8 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
+  (fn [seq index]
+    (first (subvec (vec seq) index)))
 )
 
 (defn -main []
