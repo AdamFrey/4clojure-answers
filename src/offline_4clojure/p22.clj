@@ -6,8 +6,11 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
-)
+  (fn [coll]
+    (loop [acc 0]
+      (if (empty? (drop acc coll))
+        acc
+        (recur (inc acc))))))
 
 (defn -main []
   (are [soln] soln
