@@ -7,10 +7,7 @@
 
 (def __
   (fn [coll]
-    (loop [acc 0]
-      (if (empty? (drop acc coll))
-        acc
-        (recur (inc acc))))))
+    (reduce + (map (constantly 1) coll))))
 
 (defn -main []
   (are [soln] soln
