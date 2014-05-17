@@ -8,9 +8,7 @@
 (def __
   (fn [begin end]
     (let [num (- end begin)]
-      (if (< num 1)
-        '()
-        (take num (iterate inc begin))))))
+      (take num (iterate inc begin)))))
 
 (defn -main []
   (are [soln] soln
