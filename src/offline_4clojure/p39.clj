@@ -6,8 +6,11 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
-)
+  (fn inter [c1 c2]
+    (let [s1 (seq c1)
+          s2 (seq c2)]
+      (when (and s1 s2)
+        (concat (list (first s1) (first s2)) (inter (rest s1) (rest s2)))))))
 
 (defn -main []
   (are [soln] soln
