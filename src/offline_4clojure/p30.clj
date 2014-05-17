@@ -6,8 +6,10 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
-)
+  (fn [coll]
+    (cons (first coll)
+          (map #(second %) (filter (fn [pair] (not= (first pair) (second pair)))
+                                   (partition 2 1 coll))))))
 
 (defn -main []
   (are [soln] soln
