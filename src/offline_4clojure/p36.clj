@@ -6,7 +6,7 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
+  [x 7 y 3 z 1]
 )
 
 (defn -main []
