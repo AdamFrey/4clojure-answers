@@ -6,7 +6,8 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
+  (fn [coll]
+    (filter (complement sequential?) (tree-seq sequential? seq coll)))
 )
 
 (defn -main []
