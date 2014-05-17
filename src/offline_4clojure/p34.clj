@@ -6,8 +6,11 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
-)
+  (fn [begin end]
+    (let [num (- end begin)]
+      (if (< num 1)
+        '()
+        (take num (iterate inc begin))))))
 
 (defn -main []
   (are [soln] soln
