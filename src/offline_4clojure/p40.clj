@@ -6,8 +6,8 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
-)
+  (fn [sep coll]
+    (drop-last (interleave coll (repeat sep)))))
 
 (defn -main []
   (are [soln] soln
