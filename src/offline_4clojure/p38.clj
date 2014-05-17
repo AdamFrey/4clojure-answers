@@ -6,8 +6,8 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
-)
+  (fn [& coll]
+    (reduce (fn [x y] (if (> x y) x y)) coll)))
 
 (defn -main []
   (are [soln] soln
