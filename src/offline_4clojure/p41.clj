@@ -6,8 +6,11 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
-)
+  (fn [coll num]
+    (filter identity
+            (map #(when (not= 0 (mod %2 num)) %1)
+                 coll
+                 (iterate inc 1)))))
 
 (defn -main []
   (are [soln] soln
