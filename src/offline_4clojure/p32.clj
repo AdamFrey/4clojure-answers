@@ -6,8 +6,8 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
-)
+  (fn [coll]
+    (reverse (reduce #(conj %1 %2 %2) '() coll))))
 
 (defn -main []
   (are [soln] soln
