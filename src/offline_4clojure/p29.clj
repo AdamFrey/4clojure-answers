@@ -6,8 +6,8 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
-)
+  (fn [string]
+    (apply str (filter #(Character/isUpperCase %) (seq string)))))
 
 (defn -main []
   (are [soln] soln
