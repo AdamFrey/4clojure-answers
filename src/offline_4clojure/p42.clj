@@ -6,8 +6,8 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
-)
+  (fn [x]
+    (reduce * (range 1 (inc x)))))
 
 (defn -main []
   (are [soln] soln
