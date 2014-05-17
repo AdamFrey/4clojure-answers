@@ -6,7 +6,9 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
+  (fn [coll count]
+    (mapcat (fn [el] (repeat count el))
+            coll))
 )
 
 (defn -main []
