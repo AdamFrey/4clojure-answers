@@ -6,8 +6,9 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
-)
+  (fn [positions coll]
+    (let [n (count coll)]
+      (take n (drop (mod positions n) (cycle coll))))))
 
 (defn -main []
   (are [soln] soln
