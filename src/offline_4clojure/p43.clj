@@ -6,8 +6,12 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
-)
+  (fn [coll x]
+    (let [size (/ (count coll) x)]
+      (partition size
+                 (map second
+                      (sort-by #(mod (first %) x)
+                               (map-indexed vector coll)))))))
 
 (defn -main []
   (are [soln] soln
