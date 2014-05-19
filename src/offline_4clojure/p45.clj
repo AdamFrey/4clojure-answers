@@ -6,8 +6,7 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
-)
+  [1 4 7 10 13])
 
 (defn -main []
   (are [soln] soln
