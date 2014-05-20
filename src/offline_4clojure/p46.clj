@@ -6,8 +6,8 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
-)
+  (fn [fun]
+    (fn [& args] (apply fun (reverse args)))))
 
 (defn -main []
   (are [soln] soln
