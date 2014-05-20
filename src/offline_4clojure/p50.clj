@@ -7,7 +7,7 @@
 
 (def __
   (fn [coll]
-    (apply conj '() (vals (group-by type coll)))))
+    (vals (group-by type coll))))
 
 (defn -main []
   (are [soln] soln
