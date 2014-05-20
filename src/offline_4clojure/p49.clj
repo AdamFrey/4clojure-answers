@@ -6,8 +6,8 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
-)
+  (fn [num coll]
+    (conj [] (take num coll) (drop num coll))))
 
 (defn -main []
   (are [soln] soln
