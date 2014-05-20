@@ -6,8 +6,8 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
-)
+  (fn [coll]
+    (apply conj '() (vals (group-by type coll)))))
 
 (defn -main []
   (are [soln] soln
