@@ -6,11 +6,9 @@
   (:use clojure.test))
 
 (def __
-  (fn [size coll]
-    (when-let [s (seq coll)]
-      (let [chunk (take size s)]
-        (if-not (< (count chunk) size)
-          (cons (take size s) (__ size (drop size s))))))))
+  (fn [n coll]
+    (when-not (< (count coll) n)
+      (cons (take n coll) (__ n (drop n coll))))))
 
 (defn -main []
   (are [soln] soln
