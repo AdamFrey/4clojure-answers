@@ -6,8 +6,8 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
-)
+  (fn [coll]
+    (reduce #(assoc %1 %2 (inc (get %1 %2 0))) {} coll)))
 
 (defn -main []
   (are [soln] soln
