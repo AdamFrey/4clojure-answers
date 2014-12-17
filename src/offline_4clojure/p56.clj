@@ -6,8 +6,10 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
-)
+  (fn [coll]
+    (map first
+         (sort-by val < (into {}
+                              (reverse (map vector coll (range))))))))
 
 (defn -main []
   (are [soln] soln
