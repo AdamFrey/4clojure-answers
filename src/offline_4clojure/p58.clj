@@ -5,14 +5,19 @@
 (ns offline-4clojure.p58
   (:use clojure.test))
 
-(def __
-;; your solution here
-)
+(defn __
+  ([] identity)
+  ([f] f)
+  ([f g & fns]
+   (let [fns (reverse (list* f g fns))]
+     (fn [& args]
+       (let [first-res (apply (first fns) args)]
+         (reduce (fn [res f] (f res)) first-res (rest fns)))))))
+
 
 (defn -main []
   (are [soln] soln
-(= [3 2 1] ((__ rest reverse) [1 2 3 4]))
-(= 5 ((__ (partial + 3) second) [1 2 3 4]))
-(= true ((__ zero? #(mod % 8) +) 3 5 7 9))
-(= "HELLO" ((__ #(.toUpperCase %) #(apply str %) take) 5 "hello world"))
-))
+       (= [3 2 1] ((__ rest reverse) [1 2 3 4]))
+       (= 5 ((__ (partial + 3) second) [1 2 3 4]))
+       (= true ((__ zero? #(mod % 8) +) 3 5 7 9))
+       (= "HELLO" ((__ #(.toUpperCase %) #(apply str %) take) 5 "hello world"))))
