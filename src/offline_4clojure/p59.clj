@@ -5,9 +5,9 @@
 (ns offline-4clojure.p59
   (:use clojure.test))
 
-(def __
-;; your solution here
-)
+(defn __
+  [& fns]
+  (fn [& args] (map #(apply % args) fns)))
 
 (defn -main []
   (are [soln] soln
