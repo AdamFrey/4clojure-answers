@@ -6,8 +6,8 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
-)
+  (fn [coll1 coll2]
+    (into {} (map vector coll1 coll2))))
 
 (defn -main []
   (are [soln] soln
