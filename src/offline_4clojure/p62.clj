@@ -6,8 +6,8 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
-)
+  (fn [f init]
+    (cons init (lazy-seq (__ f (f init))))))
 
 (defn -main []
   (are [soln] soln
