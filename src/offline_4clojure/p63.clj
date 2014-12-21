@@ -6,8 +6,11 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
-)
+  (fn [f coll]
+    (reduce (fn [build val]
+              (update-in build [(f val)] #(conj (or %1 []) val)))
+            {}
+            coll)))
 
 (defn -main []
   (are [soln] soln
