@@ -6,8 +6,8 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
-)
+  (fn [key map]
+    (nil? (get map key false))))
 
 (defn -main []
   (are [soln] soln
