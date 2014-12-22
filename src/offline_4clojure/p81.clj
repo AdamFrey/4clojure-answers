@@ -6,8 +6,8 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
-)
+  (fn [a b]
+    (set (filter #(get b %) a))))
 
 (defn -main []
   (are [soln] soln
