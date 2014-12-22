@@ -8,8 +8,9 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
-)
+  (fn [power]
+    (fn [base]
+      (int (Math/pow base power)))))
 
 (defn -main []
   (are [soln] soln
