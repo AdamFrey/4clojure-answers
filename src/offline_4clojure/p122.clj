@@ -6,8 +6,8 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
-)
+  (fn [num]
+    (Integer/parseInt num 2)))
 
 (defn -main []
   (are [soln] soln
