@@ -6,8 +6,8 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
-)
+  (fn [default keys]
+    (apply hash-map (interleave keys (repeat default)))))
 
 (defn -main []
   (are [soln] soln
