@@ -8,8 +8,11 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
-)
+  (fn infix
+    ([x op y]
+     (op x y))
+    ([x op y & vals]
+     (apply infix (cons (infix x op y) vals)))))
 
 (defn -main []
   (are [soln] soln
