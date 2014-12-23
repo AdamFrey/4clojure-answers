@@ -5,9 +5,7 @@
 (ns offline-4clojure.p126
   (:use clojure.test))
 
-(def __
-;; your solution here
-)
+(def __ java.lang.Class)
 
 (defn -main []
   (are [soln] soln
