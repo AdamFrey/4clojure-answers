@@ -6,8 +6,8 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
-)
+  (fn [coll]
+    (map-indexed (comp reverse vector) coll)))
 
 (defn -main []
   (are [soln] soln
