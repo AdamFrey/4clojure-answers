@@ -6,8 +6,7 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
-)
+  (fn [set1 set2] (set (for [x set1 y set2] [x y]))))
 
 (defn -main []
   (are [soln] soln
