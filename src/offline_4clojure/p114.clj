@@ -12,8 +12,13 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
-)
+  (fn global-take-while [n pred coll]
+    (lazy-seq
+     (when-let [s (seq coll)]
+       (let [pred? (pred (first s))
+             next-n (if pred? (dec n) n)]
+         (when (not (and pred? (= n 1)))
+           (cons (first s) (global-take-while next-n pred (rest s)))))))))
 
 (defn -main []
   (are [soln] soln
