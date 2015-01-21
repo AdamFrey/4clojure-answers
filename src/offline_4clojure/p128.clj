@@ -10,13 +10,13 @@
   (:use clojure.test))
 
 (def __
-  (fn [card]
+  (fn [[suit rank]]
     (let [rankings [\2 \3 \4 \5 \6 \7 \8 \9 \T \J \Q \K \A]
           suits {\D :diamond
                  \H :heart
                  \C :club
                  \S :spade}]
-      {:suit (suits (first card)) :rank (.indexOf rankings (second card))})))
+      {:suit (suits suit) :rank (.indexOf rankings rank)})))
 
 (defn -main []
   (are [soln] soln
