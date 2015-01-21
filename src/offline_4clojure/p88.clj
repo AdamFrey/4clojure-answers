@@ -6,8 +6,10 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
-)
+  (fn [a b]
+    (let [uniqa (clojure.set/difference a b)
+          uniqb (clojure.set/difference b a)]
+      (clojure.set/union uniqa uniqb))))
 
 (defn -main []
   (are [soln] soln
