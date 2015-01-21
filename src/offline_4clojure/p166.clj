@@ -12,8 +12,14 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
-)
+  (fn [op x y]
+    (let [forw (op x y)
+          back (op y x)]
+      (if (= forw back)
+        :eq
+        (if (= forw true)
+          :lt
+          :gt)))))
 
 (defn -main []
   (are [soln] soln
