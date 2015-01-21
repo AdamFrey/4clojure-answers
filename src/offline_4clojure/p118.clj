@@ -6,7 +6,7 @@
   (:use clojure.test))
 
 (def __
-  (fn new-map[f coll]
+  (fn new-map [f coll]
     (lazy-seq
      (when-let [s (seq coll)]
        (cons (f (first s)) (new-map f (rest s)))))))
