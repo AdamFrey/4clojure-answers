@@ -6,8 +6,8 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
-)
+  (fn [a b]
+    (map #(Character/digit % 10) (str (* a b)))))
 
 (defn -main []
   (are [soln] soln
