@@ -6,8 +6,12 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
-)
+  (fn [n base]
+    (let [bases-seq (iterate (partial * base) 1)
+          highest (first (filter (partial < n) bases-seq))
+          bases (take-while (partial >= highest) bases-seq)
+          digit-for-base (fn [n base last-base] (quot (rem n base) last-base))]
+      (reverse (map (partial digit-for-base n) (drop 1 bases) bases)))))
 
 (defn -main []
   (are [soln] soln
