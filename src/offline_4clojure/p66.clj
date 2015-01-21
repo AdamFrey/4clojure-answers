@@ -11,7 +11,7 @@
         mx (max a b)
         diff (- mx mn)]
     (if (< 0 mn)
-      (__ diff mn)
+      (recur diff mn)
       mx)))
 
 (defn -main []
