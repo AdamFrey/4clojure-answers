@@ -8,7 +8,7 @@
 (def __
   (fn [n]
     (let [roman-digit
-          (fn [n digit]
+          (fn dig [n digit]
             (let [chars {1 "I"
                          5 "V"
                          10 "X"
@@ -25,7 +25,7 @@
                 (cond
                  (< n 4) n-icon
                  (= n 4) (str icon half)
-                 (< 4 n 9) (str half (representation (- n 5) digit))
+                 (< 4 n 9) (str half (dig (- n 5) digit))
                  (> n 8) (str icon next-icon)
                  :else ""))))]
       (str (roman-digit (quot n 1000) 1000)
