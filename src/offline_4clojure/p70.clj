@@ -6,8 +6,10 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
-)
+  (fn [s]
+    (let [words (clojure.string/split s (re-pattern " "))
+          compare-words (fn [a b] (compare (clojure.string/lower-case a) (clojure.string/lower-case b)))]
+      (map #(clojure.string/replace % #"[^\w]" "") (sort compare-words words)))))
 
 (defn -main []
   (are [soln] soln
