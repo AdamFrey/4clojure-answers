@@ -6,8 +6,13 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
-)
+  (fn bin-tree? [t]
+    (if (nil? t)
+      true
+      (let [has-two-children (and (coll? t) (= (count t) 3))]
+        (and has-two-children
+             (bin-tree? (nth t 1))
+             (bin-tree? (nth t 2)))))))
 
 (defn -main []
   (are [soln] soln
