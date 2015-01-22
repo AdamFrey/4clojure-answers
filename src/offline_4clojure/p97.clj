@@ -9,8 +9,11 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
-)
+  (fn tri [n]
+    (if (= n 1)
+      [1]
+      (let [next-row (fn [row] (map + (cons 0 row) (conj row 0)))]
+        (vec (next-row (tri (dec n))))))))
 
 (defn -main []
   (are [soln] soln
