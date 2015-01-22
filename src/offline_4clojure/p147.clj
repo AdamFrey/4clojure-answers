@@ -6,13 +6,15 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
-)
+  (fn trap [row]
+    (let [next-row (fn [row] (map +' (cons 0 row) (conj row 0)))]
+      (lazy-seq
+       (cons row (trap (vec (next-row row))))))))
 
 (defn -main []
   (are [soln] soln
-(= (second (__ [2 3 2])) [2 5 5 2])
-(= (take 5 (__ [1])) [[1] [1 1] [1 2 1] [1 3 3 1] [1 4 6 4 1]])
-(= (take 2 (__ [3 1 2])) [[3 1 2] [3 4 3 2]])
-(= (take 100 (__ [2 4 2])) (rest (take 101 (__ [2 2]))))
-))
+       (= (second (__ [2 3 2])) [2 5 5 2])
+       (= (take 5 (__ [1])) [[1] [1 1] [1 2 1] [1 3 3 1] [1 4 6 4 1]])
+       (= (take 2 (__ [3 1 2])) [[3 1 2] [3 4 3 2]])
+       (= (take 100 (__ [2 4 2])) (rest (take 101 (__ [2 2]))))
+       ))
