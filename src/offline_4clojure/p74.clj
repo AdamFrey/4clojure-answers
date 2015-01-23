@@ -6,8 +6,12 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
-)
+  (fn [s]
+    (let [nums (clojure.string/split s #",")
+          is-sqr (fn [n]
+                   (let [sqrt (Math/sqrt n)]
+                     (= sqrt (Math/ceil sqrt))))]
+      (clojure.string/join "," (filter (comp is-sqr read-string) nums)))))
 
 (defn -main []
   (are [soln] soln
