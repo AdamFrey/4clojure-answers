@@ -6,8 +6,14 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
-)
+  (fn [s]
+    (let [partition-when
+          (fn [f coll]
+            (when-let [s (seq coll)]
+              (let [fst (first s)
+                    run (cons fst (take-while (comp not f) (next s)))]
+                (cons run (partition-when f (seq (drop (count run) s)))))))]
+      (reduce #(assoc %1 (first %2) (vec (rest %2))) {} (partition-when keyword? s)))))
 
 (defn -main []
   (are [soln] soln
