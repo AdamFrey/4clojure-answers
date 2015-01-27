@@ -6,8 +6,12 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
-)
+  (fn [n]
+    (let [sqrt (Math/sqrt n)
+          ints (take-while #(<= % sqrt) (iterate inc 2))
+          lower-divs (filter #(= 0 (rem n %)) ints)
+          divs (concat [1] lower-divs (map #(/ n %) lower-divs))]
+      (= n (reduce + divs)))))
 
 (defn -main []
   (are [soln] soln
