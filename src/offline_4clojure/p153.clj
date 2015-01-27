@@ -16,8 +16,9 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
-)
+  (fn [s]
+    (let [items (reduce into [] s)]
+      (= (count items) (count (distinct items))))))
 
 (defn -main []
   (are [soln] soln
