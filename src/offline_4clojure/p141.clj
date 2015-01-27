@@ -28,8 +28,17 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
-)
+  (fn [trump]
+    (fn winner [s]
+      (reduce (fn [win other]
+                (let [higher-rank (> (:rank other) (:rank win))
+                      higher-suit (and (not= trump (:suit win)) (= trump (:suit other)))
+                      same-suit (= (:suit win) (:suit other))]
+                  (cond
+                    higher-suit other
+                    (and same-suit higher-rank) other
+                    :else win)))
+              s))))
 
 (defn -main []
   (are [soln] soln
