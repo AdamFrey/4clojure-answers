@@ -6,8 +6,11 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
-)
+  (fn pron [s]
+    (lazy-seq
+     (let [secs (partition-by identity s)
+           next (flatten (map #(vector (count %) (first %)) secs))]
+       (cons next (pron next))))))
 
 (defn -main []
   (are [soln] soln
