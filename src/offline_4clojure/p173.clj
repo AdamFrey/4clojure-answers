@@ -7,14 +7,10 @@
 (ns offline-4clojure.p173
   (:use clojure.test))
 
-(def __
-;; your solution here
-)
-
 (defn -main []
   (are [soln] soln
 (= 3
-  (let [[__] [+ (range 3)]] (apply __))
-  (let [[[__] b] [[+ 1] 2]] (__ b))
-  (let [[__] [inc 2]] (__)))
+   (let [[f x] [+ (range 3)]] (apply f x))
+   (let [[[f x] b] [[+ 1] 2]] (f x b))
+   (let [[f x] [inc 2]] (f x)))
 ))
