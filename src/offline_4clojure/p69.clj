@@ -6,8 +6,15 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
-)
+  (fn mwf [f & maps]
+    (let [merge-entry (fn [map e]
+                        (let [k (key e) v (val e)]
+                          (if (contains? map k)
+                            (assoc map k (f (get map k) v))
+                            (assoc map k v))))
+          merge-hash (fn [m1 m2]
+                       (reduce merge-entry (or m1 {}) (seq m2)))]
+      (reduce merge-hash maps))))
 
 (defn -main []
   (are [soln] soln
