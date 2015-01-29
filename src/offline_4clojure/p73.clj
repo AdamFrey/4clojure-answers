@@ -6,8 +6,15 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
-)
+  (fn [board]
+    (let [vs board
+          hs (map (fn [n]
+                    (map #(% n) board)) [0 1 2])
+          d1 (map #(get-in board [% %]) [0 1 2])
+          d2 (map #(get-in board [%1 %2]) [0 1 2] [2 1 0])
+          rows (concat vs hs [d1 d2])]
+      (first (filter #(or (every? (partial = :x) %)
+                          (every? (partial = :o) %)) rows)))))
 
 (defn -main []
   (are [soln] soln
