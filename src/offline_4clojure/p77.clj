@@ -6,8 +6,22 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
-)
+  (fn [w]
+    (let [anagram? (fn [a b]
+                     (= (frequencies a) (frequencies b)))]
+      (loop [words w
+             res #{}]
+        (if-let [fst (first words)]
+          (let [anagrams (reduce #(if (anagram? fst %2)
+                                    (into %1 #{fst %2})
+                                    %1)
+                                 #{fst}
+                                 (rest words))
+                rem-words (remove anagrams words)]
+            (if (> (count anagrams) 1)
+              (recur rem-words (conj res anagrams))
+              (recur rem-words res)))
+          res)))))
 
 (defn -main []
   (are [soln] soln
