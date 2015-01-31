@@ -6,8 +6,8 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
-)
+  (fn [f & args]
+    args))
 
 (defn -main []
   (are [soln] soln
