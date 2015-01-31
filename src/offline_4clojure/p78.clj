@@ -6,8 +6,14 @@
   (:use clojure.test))
 
 (def __
-  (fn [f & args]
-    args))
+  (fn tramp
+    ([f]
+     (loop [res-or-fn f]
+       (if (fn? res-or-fn)
+         (recur (res-or-fn))
+         res-or-fn)))
+    ([f & args]
+     (tramp (apply f args)))))
 
 (defn -main []
   (are [soln] soln
