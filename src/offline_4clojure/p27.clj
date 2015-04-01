@@ -8,8 +8,7 @@
 
 (def __
   (fn [coll]
-    (= (reverse (reverse coll)) (reverse coll)))
-)
+    (= coll (reverse coll))))
 
 (defn -main []
   (are [soln] soln
