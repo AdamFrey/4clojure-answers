@@ -5,12 +5,7 @@
 (ns offline-4clojure.p39
   (:use clojure.test))
 
-(def __
-  (fn inter [c1 c2]
-    (let [s1 (seq c1)
-          s2 (seq c2)]
-      (when (and s1 s2)
-        (concat (list (first s1) (first s2)) (inter (rest s1) (rest s2)))))))
+(def __ (partial mapcat vector))
 
 (defn -main []
   (are [soln] soln
