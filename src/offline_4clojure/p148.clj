@@ -8,8 +8,12 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
-)
+  (fn [coll]
+    (let [char-to-int (fn [c] (- (int c) 48))
+          sum-of-square-of-digits (fn [n] (reduce +
+                                                 (map #(* % %)
+                                                      (map char-to-int (str n)))))]
+      (count (filter #(< % (sum-of-square-of-digits %)) coll)))))
 
 (defn -main []
   (are [soln] soln
