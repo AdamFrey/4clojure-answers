@@ -7,9 +7,7 @@
 
 (def __
   (fn [coll]
-    (cons (first coll)
-          (map #(second %) (filter (fn [pair] (not= (first pair) (second pair)))
-                                   (partition 2 1 coll))))))
+    (map first (partition-by identity coll))))
 
 (defn -main []
   (are [soln] soln
