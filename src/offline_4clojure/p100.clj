@@ -6,8 +6,15 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
-)
+  (fn lcd [& nums]
+    (let [gcd (fn [x y]
+                (let [[little big] (sort [x y])
+                      diff (- big little)]
+                  (if (< 0 little)
+                    (recur diff little)
+                    big)))
+          lcd-of-two (fn [x y] (/ (* x y) (gcd x y)))]
+      (reduce lcd-of-two nums))))
 
 (defn -main []
   (are [soln] soln
