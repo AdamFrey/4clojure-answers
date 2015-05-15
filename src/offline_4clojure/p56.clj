@@ -7,9 +7,10 @@
 
 (def __
   (fn [coll]
-    (map first
-         (sort-by val < (into {}
-                              (reverse (map vector coll (range))))))))
+    (reduce (fn [acc x]
+              (if (some #{x} acc)
+                acc
+                (conj acc x))) [] coll)))
 
 (defn -main []
   (are [soln] soln
