@@ -6,13 +6,10 @@
 (ns offline-4clojure.p66
   (:use clojure.test))
 
-(defn __ [a b]
-  (let [mn (min a b)
-        mx (max a b)
-        diff (- mx mn)]
-    (if (< 0 mn)
-      (recur diff mn)
-      mx)))
+(def __ (fn [a b]
+          (if (= b 0)
+            a
+            (recur b (rem a b)))))
 
 (defn -main []
   (are [soln] soln
