@@ -6,8 +6,10 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
-)
+  (fn [s]
+    (let [words (clojure.string/split s #"-")]
+      (apply str
+             (conj (map clojure.string/capitalize (rest words)) (first words))))))
 
 (defn -main []
   (are [soln] soln
