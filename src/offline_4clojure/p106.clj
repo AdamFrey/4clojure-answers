@@ -11,20 +11,21 @@
   (:use clojure.test))
 
 ;; Stack overflow risk
-(defn __ [start end]
-  (loop [paths [start]
-         length 1]
-    (if-let [sol (first (filter pos? (map
-                                      #(if (= % end)
-                                         length
-                                         -1)
-                                      paths)))]
-      sol
-      (recur (distinct (reduce (fn [acc pt]
-                                 (let [some-options [(* 2 pt) (+ 2 pt)]
-                                       options (if (even? pt) (conj some-options (/ pt 2)) some-options)]
-                                   (concat acc options))) [] paths))
-             (inc length)))))
+(def
+  (fn __ [start end]
+    (loop [paths [start]
+           length 1]
+      (if-let [sol (first (filter pos? (map
+                                        #(if (= % end)
+                                           length
+                                           -1)
+                                        paths)))]
+        sol
+        (recur (distinct (reduce (fn [acc pt]
+                                   (let [some-options [(* 2 pt) (+ 2 pt)]
+                                         options (if (even? pt) (conj some-options (/ pt 2)) some-options)]
+                                     (concat acc options))) [] paths))
+               (inc length))))))
 
 (defn -main []
   (are [soln] soln
