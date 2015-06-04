@@ -6,8 +6,12 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
-)
+  (fn [& seqs]
+    (let [heads (map first seqs)]
+      (if (apply = heads)
+        (first heads)
+        (let [largest (reduce max heads)]
+          (recur (map #(drop-while (partial > largest) %) seqs)))))))
 
 (defn -main []
   (are [soln] soln
