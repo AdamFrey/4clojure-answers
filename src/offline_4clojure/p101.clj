@@ -6,8 +6,22 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
-)
+  (fn [s1 s2]
+    (let [length1 (count s1)
+          length2 (count s2)
+          coords (for [x (range length1)
+                       y (range length2)] [x y])
+          distances (reduce
+                     (fn [acc [x y]]
+                       (let [chars-equal? (= (nth s1 x) (nth s2 y))
+                             cost (if chars-equal? 0 1)
+                             sub-lev (min
+                                      (inc (get acc [x (dec y)] x))
+                                      (inc (get acc [(dec x) y] y))
+                                      (+ cost (get acc [(dec x) (dec y)] (max x y))))]
+                         (assoc acc [x y] sub-lev)))
+                     {} coords)]
+      (get distances [(dec length1) (dec length2)] (max length1 length2)))))
 
 (defn -main []
   (are [soln] soln
