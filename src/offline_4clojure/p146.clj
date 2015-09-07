@@ -10,8 +10,10 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
-)
+  (fn [nested-map]
+    (into {} (for [[key value] nested-map
+                   [n-key n-value] value]
+               [[key n-key] n-value]))))
 
 (defn -main []
   (are [soln] soln
