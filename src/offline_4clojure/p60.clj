@@ -5,16 +5,16 @@
 (ns offline-4clojure.p60
   (:use clojure.test))
 
-(defn __
-  ([f coll]
-   (lazy-seq
-    (__ f (first coll) (rest coll))))
-  ([f start coll]
-   (cons start
-         (lazy-seq
-          (if-let [s (seq coll)]
-            (__ f (f start (first s)) (rest s))))))
-  )
+(def __
+  (fn reds
+    ([f coll]
+     (lazy-seq
+      (reds f (first coll) (rest coll))))
+    ([f start coll]
+     (cons start
+           (lazy-seq
+            (when-let [s (seq coll)]
+              (reds f (f start (first s)) (rest s))))))))
 
 (defn -main []
   (are [soln] soln
