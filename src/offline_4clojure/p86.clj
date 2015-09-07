@@ -6,13 +6,22 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
-)
+  (fn happy
+    ([n] (happy n #{}))
+    ([n seen]
+     (let [digits (map #(Character/getNumericValue %) (str n))
+           square #(* % %)
+           new-num (apply + (map square digits))]
+       (cond
+         (= new-num 1) true
+         (get seen new-num) false
+         :else (recur new-num (conj seen new-num)))))))
+
 
 (defn -main []
   (are [soln] soln
-(= (__ 7) true)
-(= (__ 986543210) true)
-(= (__ 2) false)
-(= (__ 3) false)
-))
+    (= (__ 7) true)
+    (= (__ 986543210) true)
+    (= (__ 2) false)
+    (= (__ 3) false)
+    ))
