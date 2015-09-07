@@ -6,18 +6,19 @@
   (:use clojure.test))
 
 (def __
-  (fn [n base]
-    (let [bases-seq (iterate (partial * base) 1)
-          highest (first (filter (partial < n) bases-seq))
-          bases (take-while (partial >= highest) bases-seq)
-          digit-for-base (fn [n base last-base] (quot (rem n base) last-base))]
-      (reverse (map (partial digit-for-base n) (drop 1 bases) bases)))))
+  (fn d+b
+    ([n base] (d+b n base '()))
+    ([n base digits]
+     (if (= n 0)
+       (if (empty? digits) [0] digits)
+
+       (let [remainder (rem n base)]
+         (recur (quot n base) base (conj digits remainder)))))))
 
 (defn -main []
   (are [soln] soln
-(= [1 2 3 4 5 0 1] (__ 1234501 10))
-(= [0] (__ 0 11))
-(= [1 0 0 1] (__ 9 2))
-(= [1 0] (let [n (rand-int 100000)](__ n n)))
-(= [16 18 5 24 15 1] (__ Integer/MAX_VALUE 42))
-))
+    (= [1 2 3 4 5 0 1] (__ 1234501 10))
+    (= [0] (__ 0 11))
+    (= [1 0 0 1] (__ 9 2))
+    (= [1 0] (let [n (rand-int 100000)](__ n n)))
+    (= [16 18 5 24 15 1] (__ Integer/MAX_VALUE 42))))
