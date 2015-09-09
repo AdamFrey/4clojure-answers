@@ -6,20 +6,24 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
-)
+  (fn [f val coll]
+    (if (empty? coll)
+      '()
+      (->> (partition 2 1 coll)
+           (mapcat (fn [[x y]]
+                     (if (f x y) [val y] [y])))
+           (cons (first coll))))))
 
 (defn -main []
   (are [soln] soln
-(= '(1 :less 6 :less 7 4 3) (__ < :less [1 6 7 4 3]))
-(= '(2) (__ > :more [2]))
-(= [0 1 :x 2 :x 3 :x 4]  (__ #(and (pos? %) (< % %2)) :x (range 5)))
-(empty? (__ > :more ()))
-(= [0 1 :same 1 2 3 :same 5 8 13 :same 21]
-   (take 12 (->> [0 1]
-                 (iterate (fn [[a b]] [b (+ a b)]))
-                 (map first) ; fibonacci numbers
-                 (__ (fn [a b] ; both even or both odd
-                       (= (mod a 2) (mod b 2)))
-                     :same))))
-))
+    (= '(1 :less 6 :less 7 4 3) (__ < :less [1 6 7 4 3]))
+    (= '(2) (__ > :more [2]))
+    (= [0 1 :x 2 :x 3 :x 4]  (__ #(and (pos? %) (< % %2)) :x (range 5)))
+    (empty? (__ > :more ()))
+    (= [0 1 :same 1 2 3 :same 5 8 13 :same 21]
+       (take 12 (->> [0 1]
+                     (iterate (fn [[a b]] [b (+ a b)]))
+                     (map first) ; fibonacci numbers
+                     (__ (fn [a b] ; both even or both odd
+                           (= (mod a 2) (mod b 2)))
+                         :same))))))
