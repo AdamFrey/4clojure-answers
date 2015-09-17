@@ -6,21 +6,31 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
-)
+  (fn [str]
+    (let [char-pairs {\{ \}
+                      \[ \]
+                      \( \)}
+          checker (fn [stack char]
+                    (cond
+                      (#{\{ \[ \(} char) (conj stack char)
+                      (#{\} \] \)} char) (if (= (get char-pairs (peek stack)) char)
+                                           (pop stack)
+                                           (conj stack char))
+                      :else stack))]
+      (empty? (reduce checker '() str)))))
 
 (defn -main []
   (are [soln] soln
-(__ "This string has no brackets.")
-(__ "class Test {
+    (__ "This string has no brackets.")
+    (__ "class Test {
       public static void main(String[] args) {
         System.out.println(\"Hello world.\");
       }
     }")
-(not (__ "(start, end]"))
-(not (__ "())"))
-(not (__ "[ { ] } "))
-(__ "([]([(()){()}(()(()))(([[]]({}()))())]((((()()))))))")
-(not (__ "([]([(()){()}(()(()))(([[]]({}([)))())]((((()()))))))"))
-(not (__ "["))
-))
+    (not (__ "(start, end]"))
+    (not (__ "())"))
+    (not (__ "[ { ] } "))
+    (__ "([]([(()){()}(()(()))(([[]]({}()))())]((((()()))))))")
+    (not (__ "([]([(()){()}(()(()))(([[]]({}([)))())]((((()()))))))"))
+    (not (__ "["))
+    ))
