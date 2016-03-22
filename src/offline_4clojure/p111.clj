@@ -23,8 +23,18 @@
   (:use clojure.test))
 
 (def __
-;; your solution here
-)
+  (fn [word rows]
+    (let [letters (map str (seq word))
+          grid (mapv #(vec (re-seq #"\S+" %)) rows)
+          eql-or-blank? (fn [[x y]] (or (= x "_") (= x y)))
+          h-segment (fn [[x y] len] (map #(get-in grid [y %]) (range x (+ x len))))
+          v-segment (fn [[x y] len] (map #(get-in grid [% x]) (range y (+ y len))))]
+      (some true?
+            (for [y (range (count grid))
+                  x (range (count (first grid)))]
+              (or
+               (every? eql-or-blank? (map vector (h-segment [x y] (count letters)) letters))
+               (every? eql-or-blank? (map vector (v-segment [x y] (count letters)) letters))))))))
 
 (defn -main []
   (are [soln] soln
